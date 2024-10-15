@@ -1,5 +1,6 @@
 package org.example.service.processo;
 
+import org.example.config.db.ReuRepository;
 import org.example.service.processo.entity.Processo;
 import org.example.service.processo.entity.Reu;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class ProcessoService {
 
     @Autowired
     private ProcessoRepository processoRepository;
+
+    @Autowired
+    private ReuRepository reuRepository;
 
     @Transactional
     public Processo saveProcesso(Processo processo) {
@@ -91,6 +95,7 @@ public class ProcessoService {
             throw new IllegalArgumentException("O nome do Reu não pode ser null ou vazio");
         }
         reu.setProcesso(processo);
+        reuRepository.save(reu);
         processo.getReus().add(reu);
         return processoRepository.save(processo);
     }

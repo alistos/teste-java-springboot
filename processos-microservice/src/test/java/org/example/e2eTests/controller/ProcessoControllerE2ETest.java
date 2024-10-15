@@ -1,10 +1,10 @@
 package org.example.e2eTests.controller;
 
 import org.example.ProcessosMicroserviceApplication;
+import org.example.config.db.ReuRepository;
 import org.example.service.processo.entity.Processo;
 import org.example.service.processo.entity.Reu;
 import org.example.config.db.ProcessoRepository;
-import org.example.config.db.ReuRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

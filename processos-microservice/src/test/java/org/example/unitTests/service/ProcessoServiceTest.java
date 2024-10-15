@@ -1,5 +1,6 @@
 package org.example.unitTests.service;
 
+import org.example.config.db.ReuRepository;
 import org.example.service.processo.ProcessoService;
 import org.example.config.db.ProcessoRepository;
 import org.example.exception.ResourceNotFoundException;
@@ -25,6 +26,9 @@ public class ProcessoServiceTest {
 
     @Mock
     private ProcessoRepository processoRepository;
+
+    @Mock
+    private ReuRepository reuRepository;
 
     @InjectMocks
     private ProcessoService processoService;
@@ -112,6 +116,7 @@ public class ProcessoServiceTest {
 
         when(processoRepository.findById(1L)).thenReturn(Optional.of(processo));
         when(processoRepository.save(any(Processo.class))).thenReturn(processo);
+        when(reuRepository.save(any(Reu.class))).thenReturn(reu); // Mock do ReuRepository
 
         Processo updatedProcesso = processoService.addReuToProcesso(1L, reu);
         assertNotNull(updatedProcesso);
@@ -136,9 +141,9 @@ public class ProcessoServiceTest {
         Reu reu = new Reu();
         reu.setId(1L);
         reu.setNome("John Doe");
+        reu.setProcesso(processo); // Associa o réu ao processo
 
         processo.getReus().add(reu);
-        reu.setProcesso(processo);
 
         when(processoRepository.findById(1L)).thenReturn(Optional.of(processo));
         when(processoRepository.save(any(Processo.class))).thenReturn(processo);
