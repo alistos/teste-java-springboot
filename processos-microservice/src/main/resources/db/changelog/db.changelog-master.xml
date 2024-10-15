@@ -30,6 +30,6 @@
                                  baseColumnNames="processo_id"
                                  referencedTableName="processo"
                                  referencedColumnNames="id"
-                                 constraintName="fk_reu_processo"/>
+                                 constraintName="fk_processo"/>
     </changeSet>
 </databaseChangeLog>
